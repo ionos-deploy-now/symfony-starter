@@ -1,0 +1,52 @@
+version: 1.0
+deploy:
+
+  # configuration part, which is taken at the FIRST deployment of each branch
+  bootstrap:
+    # folders that are not copied to IONOS webspace
+    excludes:
+      - tests
+      - node_modules
+      # the following three files are generated during composer action and are not neccessary
+      - DOCKER_ENV
+      - docker_tag
+      - output.log
+    # commands that are executed at the real webspace NOT at build servers AFTER copying new files
+    post-deployment-remote-commands:
+      - php bin/create-app-secret
+      # set right file permissions for Symfony
+      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
+      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
+      - mkdir -p var && chmod -R o+w var
+      # clear caches, migrate database, install assets, warmup caches
+      - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+      #- php bin/console doctrine:database:create
+      #- php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+      - php bin/console assets:install
+      - APP_ENV=prod APP_DEBUG=0 php bin/console cache:warmup
+
+  # configuration part, which is taken at ALL FURTHER deployments of this branch
+  recurring:
+    excludes:
+      - tests
+      - node_modules
+      - DOCKER_ENV
+      - docker_tag
+      - output.log
+      # the var folder shouldn't be synced after first deployment, because there
+      # are files inside from running the Symfony app (e.g. database)
+      - var
+    # commands that are executed at the real webspace NOT at build servers BEFORE copying new files
+    pre-deployment-remote-commands:
+      - echo "here you could enter maintenance mode..."
+    post-deployment-remote-commands:
+      - php bin/create-app-secret
+      # set right file permissions for Symfony
+      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
+      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
+      - chmod -R o+w var
+      # clear caches, migrate database, install assets, warmup caches
+      - APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+      #- php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+      - php bin/console assets:install
+      - APP_ENV=prod APP_DEBUG=0 php bin/console cache:warmup
