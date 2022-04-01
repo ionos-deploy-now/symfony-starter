@@ -55,8 +55,15 @@ Encore
         config.corejs = 3;
     })
 
+    // enable post css loader
+    .enablePostCssLoader((options) => {
+        options.postcssOptions = {
+            config: './postcss.config.js',
+        };
+    })
+
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
