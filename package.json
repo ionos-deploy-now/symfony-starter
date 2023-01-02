@@ -2,7 +2,7 @@
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.0.0",
-        "@symfony/webpack-encore": "^1.7.0",
+        "@symfony/webpack-encore": "^4.2.0",
         "core-js": "^3.0.0",
         "postcss-import": "^14.1.0",
         "postcss-loader": "^6.2.1",
