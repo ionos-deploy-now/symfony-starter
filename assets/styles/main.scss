@@ -1,9 +1,3 @@
-@import "tailwindcss/base";
-
-@import "tailwindcss/components";
-
-@import "tailwindcss/utilities";
-
 $backgroundColor: hsla(1, 20%, 95%, 1);
 $ionosBlue: #003d8f;
 
@@ -41,26 +35,26 @@ svg { overflow: hidden; vertical-align: text-bottom; }
 .resource a { display: block; font-size: 14px; }
 
 @media (min-width: 768px) {
-    @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-    @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-    .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards; z-index: 99999; }
+  @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+  .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards; z-index: 99999; }
 
-    .resources .row { margin-left: 50px; margin-right: 50px; }
-    .resource { padding: 0 30px; }
+  .resources .row { margin-left: 50px; margin-right: 50px; }
+  .resource { padding: 0 30px; }
 
-    .status { padding-bottom: 4em; }
-    .status code { display: inline-flex; }
-    .status .status-ready { display: block; }
+  .status { padding-bottom: 4em; }
+  .status code { display: inline-flex; }
+  .status .status-ready { display: block; }
 
-    .resource svg { height: 64px; width: 64px; }
-    .resource h2 { font-size: 22px; }
-    .resource a { font-size: 16px; margin-top: 0; }
+  .resource svg { height: 64px; width: 64px; }
+  .resource h2 { font-size: 22px; }
+  .resource a { font-size: 16px; margin-top: 0; }
 }
 @media (min-width: 992px) {
-    body { font-size: 20px; }
-    .warning { text-align: center; }
+  body { font-size: 20px; }
+  .warning { text-align: center; }
 }
 
 svg, img {
-    display: inline-block;
+  display: inline-block;
 }
