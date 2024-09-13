@@ -15,6 +15,8 @@ This is a basic Symfony 7 website including tailwaind css, built with composer a
 
 Afterwards, Deploy Now will set up a [GitHub Actions](https://github.com/features/actions) workflow that will be triggered by every new code commit. Build results are automatically deployed to IONOS infrastructure. Projects go live under a preview URL, but you can replace it with a custom domain anytime.
 
+**Note that the current sample project is only compatible with PHP version 8.3.
+
 ## Helpful links
 [Deploy Now docs](https://docs.ionos.space/)
 
